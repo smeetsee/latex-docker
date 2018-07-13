@@ -1,5 +1,5 @@
-FROM ubuntu:xenial
-MAINTAINER Tim Neumann <mail@timnn.me>
+FROM ubuntu:bionic
+MAINTAINER Leonard Marschke <leonard@marschke.me>
 
 ARG DEBIAN_FRONTEND=noninteractive
 
@@ -18,6 +18,7 @@ RUN apt-get -y update \
         graphviz \
         python3-pip \
         texlive-full \
+        python-pygments \
  && apt-get -y clean \
  && rm -rf /var/lib/apt/lists/*
 
