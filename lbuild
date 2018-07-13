@@ -62,13 +62,20 @@ def process(tex, engine, timeout, shell_escape):
             "-cd",
             "-pdf",
             "-outdir={}".format(tmp),
-            "-pdflatex={} -interaction=nonstopmode -output-directory={} %O".format(engine, tmp),
+        ]
+
+        latex_cmd = [
+            "-pdflatex={}".format(engine),
+            "-interaction=nonstopmode",
+            "-output-directory={}".format(tmp),
+            "%O",
         ]
 
         if shell_escape:
-            cmd.append('-shell-escape')
+            latex_cmd.append('-shell-escape')
 
-        cmd.append('%S')
+        latex_cmd.append('%S')
+        cmd.append(" ".join(latex_cmd))
         cmd.append(tex)
 
         print("Now compiling {}".format(tex))
