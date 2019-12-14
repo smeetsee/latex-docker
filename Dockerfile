@@ -1,5 +1,5 @@
 FROM ubuntu:bionic
-MAINTAINER Leonard Marschke <leonard@marschke.me>
+MAINTAINER Xander Smeets <xander@smeets.re>
 
 ARG DEBIAN_FRONTEND=noninteractive
 
@@ -26,5 +26,3 @@ RUN luaotfload-tool --update
 
 VOLUME ["/data"]
 WORKDIR /data
-
-ADD lbuild /usr/local/bin/lbuild
