@@ -16,6 +16,7 @@ docker-build-alpine:
     - docker buildx build --push --platform linux/arm64/v8,linux/amd64 --tag "${CI_REGISTRY_IMAGE}:alpine-latest" .
     # Also create an alias for the latest tag
     # based on https://gist.github.com/mcandre/61504585550782ced65e
+    - sleep 30
     - docker tag "${CI_REGISTRY_IMAGE}:alpine-latest" "${CI_REGISTRY_IMAGE}:latest"
     - docker push "${CI_REGISTRY_IMAGE}:latest"
   only:
