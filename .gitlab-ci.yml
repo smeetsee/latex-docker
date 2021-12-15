@@ -1,4 +1,4 @@
-docker-build:
+docker-build-alpine:
   image: jdrouet/docker-with-buildx:stable
   stage: build
   variables:
@@ -8,10 +8,33 @@ docker-build:
   before_script:
     - docker login -u "$CI_REGISTRY_USER" -p "$CI_REGISTRY_PASSWORD" $CI_REGISTRY
   script:
+    - mv alpine.Dockerfile Dockerfile
     - docker run --rm --privileged multiarch/qemu-user-static --reset -p yes
     - docker context create $CI_JOB_ID
     - docker buildx create $CI_JOB_ID --name multiarch --driver docker-container --use
     - docker buildx inspect --bootstrap
-    - docker buildx build --push --platform linux/arm64/v8,linux/amd64 --tag $CI_REGISTRY_IMAGE .
+    - docker buildx build --push --platform linux/arm64/v8,linux/amd64 --tag "${CI_REGISTRY_IMAGE}:alpine-latest" .
+    # Also create an alias for the latest tag
+    - docker tag "${CI_REGISTRY_IMAGE}:alpine-latest" "${CI_REGISTRY_IMAGE}:latest"
+    - docker push "${CI_REGISTRY_IMAGE}:latest"
+  only:
+    - master
+
+docker-build-ubuntu:
+  image: jdrouet/docker-with-buildx:stable
+  stage: build
+  variables:
+    DOCKER_DRIVER: overlay2
+  services:
+    - docker:dind
+  before_script:
+    - docker login -u "$CI_REGISTRY_USER" -p "$CI_REGISTRY_PASSWORD" $CI_REGISTRY
+  script:
+    - mv ubuntu.Dockerfile Dockerfile
+    - docker run --rm --privileged multiarch/qemu-user-static --reset -p yes
+    - docker context create $CI_JOB_ID
+    - docker buildx create $CI_JOB_ID --name multiarch --driver docker-container --use
+    - docker buildx inspect --bootstrap
+    - docker buildx build --push --platform linux/arm64/v8,linux/amd64 --tag "${CI_REGISTRY_IMAGE}:ubuntu-latest" .
   only:
     - master
