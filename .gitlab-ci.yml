@@ -16,7 +16,7 @@ docker-build-alpine:
     - docker buildx build --push --platform linux/arm64/v8,linux/amd64 --tag "${CI_REGISTRY_IMAGE}:alpine-latest" .
     # Also create an alias for the latest tag
     # based on https://gist.github.com/mcandre/61504585550782ced65e
-    - sleep 30
+    # - sleep 30
     # - docker tag "${CI_REGISTRY_IMAGE}:alpine-latest" "${CI_REGISTRY_IMAGE}:latest"
     # - docker push "${CI_REGISTRY_IMAGE}:latest"
   only:
@@ -38,9 +38,6 @@ docker-build-alpine-without-languages:
     - docker buildx create $CI_JOB_ID --name multiarch --driver docker-container --use
     - docker buildx inspect --bootstrap
     - docker buildx build --push --platform linux/arm64/v8,linux/arm/v7,linux/amd64,linux/386 --tag "${CI_REGISTRY_IMAGE}:alpine-no-lang" .
-    # Also create an alias for the latest tag
-    # based on https://gist.github.com/mcandre/61504585550782ced65e
-    - sleep 30
   only:
     - master
 
