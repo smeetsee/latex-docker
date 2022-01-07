@@ -37,7 +37,7 @@ docker-build-alpine-without-languages:
     - docker context create $CI_JOB_ID
     - docker buildx create $CI_JOB_ID --name multiarch --driver docker-container --use
     - docker buildx inspect --bootstrap
-    - docker buildx build --push --platform linux/arm64/v8,linux/arm/v7,linux/amd64,linux/386 --tag "${CI_REGISTRY_IMAGE}:alpine-no-lang" .
+    - docker buildx build --push --platform linux/arm64/v8,linux/arm/v7,linux/amd64 --tag "${CI_REGISTRY_IMAGE}:alpine-no-lang" .
   only:
     - master
 
