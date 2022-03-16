@@ -6,6 +6,7 @@ MAINTAINER Xander Smeets <xander@smeets.re>
 ENV LATEXENGINE=lualatex
 ENV PYTHONUNBUFFERED=1
 
+RUN apk add --no-cache texlive texlive-dvi texlive-luatex texlive-xetex texmf-dist-most xdvik py3-pygments git wget graphviz
 RUN apk add --no-cache texlive-full py3-pygments git wget graphviz 
 
 
