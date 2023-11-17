@@ -20,7 +20,7 @@ RUN apt-get -y update \
         graphviz \
         python3-pip \
         texlive-full \
-        python-pygments \
+        python3-pygments \
  && apt-get -y clean \
  && rm -rf /var/lib/apt/lists/*
 
