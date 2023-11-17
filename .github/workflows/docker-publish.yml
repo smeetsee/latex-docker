@@ -81,7 +81,7 @@ jobs:
           push: ${{ github.event_name != 'pull_request' }}
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
-          platforms: linux/amd64, linux/arm64, linux/arm/v7, linux/ppc64le
+          platforms: linux/amd64, linux/arm64, linux/arm/v7
           file: ./ubuntu.Dockerfile
 
       # Sign the resulting Docker image digest except on PRs.
@@ -154,7 +154,7 @@ jobs:
           push: ${{ github.event_name != 'pull_request' }}
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
-          platforms: linux/amd64, linux/arm64, linux/arm/v7, linux/386
+          platforms: linux/amd64, linux/arm64, linux/arm/v7
           file: ./alpine.Dockerfile
 
       # Sign the resulting Docker image digest except on PRs.
