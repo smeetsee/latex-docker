@@ -1,4 +1,4 @@
-FROM ubuntu:bionic
+FROM ubuntu:jammy
 MAINTAINER Xander Smeets <xander@smeets.re>
 
 ARG DEBIAN_FRONTEND=noninteractive
