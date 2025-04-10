@@ -1,5 +1,5 @@
-FROM ubuntu:jammy
-MAINTAINER Xander Smeets <xander@smeets.re>
+FROM ubuntu:noble
+MAINTAINER Xander Smeets <xander@smeets.ee>
 
 ARG DEBIAN_FRONTEND=noninteractive
 

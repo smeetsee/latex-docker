@@ -1,5 +1,5 @@
 FROM alpine:latest AS base
-MAINTAINER Xander Smeets <xander@smeets.re>
+MAINTAINER Xander Smeets <xander@smeets.ee>
 VOLUME ["/data"]
 WORKDIR /data
 ENV LATEXENGINE=lualatex
