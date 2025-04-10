@@ -91,7 +91,7 @@ jobs:
           context: .
           platforms: ${{ matrix.platform }}
           tags: |
-            ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ matrix.platform }}
+            ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ env.PLATFORM_PAIR }}
           labels: ${{ steps.meta.outputs.labels }}
           outputs: type=image,push=${{ github.event_name != 'pull_request' }}
           file: ./ubuntu.Dockerfile
