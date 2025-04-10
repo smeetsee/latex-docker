@@ -1,7 +1,7 @@
 #!/bin/sh -l
 
-# Get the input file from the GitHub Action input
-TEX_FILE="$INPUT_TEX_FILE"
+# Get the input file from the GitHub Action input or the first argument
+TEX_FILE="${INPUT_TEX_FILE:-$1}"
 
 # Check if the input file is provided
 if [ -z "$TEX_FILE" ]; then
