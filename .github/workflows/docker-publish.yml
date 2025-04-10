@@ -259,7 +259,7 @@ jobs:
         working-directory: ${{ runner.temp }}/digests_action
         run: |
           docker buildx imagetools create \
-            -t ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:latest \
+            -t ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}-action:latest \
             ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:linux-amd64 \
             ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:linux-arm64
 
