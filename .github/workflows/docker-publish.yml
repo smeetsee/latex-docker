@@ -51,7 +51,7 @@ jobs:
         id: meta
         uses: docker/metadata-action@v5
         with:
-          images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}-temp-${{ env.PLATFORM_PAIR }}
+          images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
 
       # Login against a Docker registry except on PR
       # https://github.com/docker/login-action
