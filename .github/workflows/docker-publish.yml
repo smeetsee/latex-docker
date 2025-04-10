@@ -212,8 +212,8 @@ jobs:
         run: |
           docker buildx imagetools create \
             -t ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:latest \
-            ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:amd64 \
-            ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:arm64
+            ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:linux-amd64 \
+            ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:linux-arm64
 
       - name: Inspect image
         run: |
@@ -260,8 +260,8 @@ jobs:
         run: |
           docker buildx imagetools create \
             -t ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:latest \
-            ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:amd64 \
-            ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:arm64
+            ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:linux-amd64 \
+            ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:linux-arm64
 
       - name: Inspect image
         run: |
