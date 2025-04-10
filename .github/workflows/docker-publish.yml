@@ -90,7 +90,8 @@ jobs:
         with:
           context: .
           platforms: ${{ matrix.platform }}
-          tags: ${{ steps.meta.outputs.tags }}
+          tags: |
+            ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ matrix.platform }}
           labels: ${{ steps.meta.outputs.labels }}
           outputs: type=image,push=${{ github.event_name != 'pull_request' }}
           file: ./ubuntu.Dockerfile
@@ -112,7 +113,7 @@ jobs:
         run: |
           mkdir -p ${{ runner.temp }}/digests
           digest="${{ steps.build.outputs.digest }}"
-          touch "${{ runner.temp }}/digests/${digest#sha256:}"
+          echo "${digest}" > "${{ runner.temp }}/digests/${{ matrix.platform }}"
 
       - name: Upload digest
         uses: actions/upload-artifact@v4
@@ -207,10 +208,11 @@ jobs:
             type=semver,pattern={{major}}.{{minor}}
 
       - name: Create manifest list and push
-        working-directory: ${{ runner.temp }}/digests
         run: |
-          docker buildx imagetools create $(jq -cr '.tags | map("-t " + .) | join(" ")' <<< "$DOCKER_METADATA_OUTPUT_JSON") \
-            $(printf '${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}@sha256:%s ' *)
+          docker buildx imagetools create \
+            -t ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:latest \
+            ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:linux/amd64 \
+            ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:linux/arm64
 
       - name: Inspect image
         run: |
