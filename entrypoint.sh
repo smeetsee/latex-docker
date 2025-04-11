@@ -1,5 +1,7 @@
 #!/bin/sh -l
 
+echo "::debug::Entrypoint script started."
+
 # Get the input file from the GitHub Action input or the first argument
 TEX_FILE="${INPUT_TEX_FILE:-$1}"
 
