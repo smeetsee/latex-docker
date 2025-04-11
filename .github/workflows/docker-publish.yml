@@ -181,7 +181,7 @@ jobs:
             -t ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:latest \
             ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:linux-amd64 \
             ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:linux-arm64 \
-            ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:linux-armv7
+            ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:linux-arm-v7
 
       - name: Inspect image
         run: |
@@ -223,7 +223,7 @@ jobs:
             -t ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}-action:latest \
             ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}-action:linux-amd64 \
             ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}-action:linux-arm64 \
-            ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}-action:linux-armv7
+            ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}-action:linux-arm-v7
 
       - name: Inspect image
         run: |
