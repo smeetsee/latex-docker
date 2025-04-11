@@ -38,5 +38,8 @@ COPY entrypoint.sh .
 # Make entrypoint executable
 RUN chmod +x /usr/src/entrypoint.sh
 
+# Set working directory for GitHub Actions use
+WORKDIR /github/workspace
+
 # Configure the container to be run as an executable
 ENTRYPOINT ["/usr/src/entrypoint.sh"]
